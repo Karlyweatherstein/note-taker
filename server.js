@@ -9,8 +9,13 @@ const publicPath = path.join(__dirname, "/public")
 const PORT = process.env.PORT || 3001;
 const app = express();
 
+//Routes
+app.get('/api/notes', (req, res) => {
+    if (req){
+        res.json(results)
+    }
+})
 
-// app.get('/')
 
 // Listening
 app.listen(PORT, () => {
