@@ -2,14 +2,25 @@ const express = require('express');
 const fs = require('fs');
 
 //creating paths
-const dbPath = path.join(__dirname, "/db")
-const publicPath = path.join(__dirname, "/public")
 
 // Running on PORT 3001
 const PORT = process.env.PORT || 3001;
 const app = express();
 
-//Routes
+
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.static('public'));
+
+
+//HTML Routes
+app.get('/notes', (req, res) => {
+    res.sendFile(path.join(publicPath, 'notes'));
+})
+
+
+// //Routes
 app.get('/api/notes', (req, res) => {
     if (req){
         res.json(results)
@@ -19,5 +30,5 @@ app.get('/api/notes', (req, res) => {
 
 // Listening
 app.listen(PORT, () => {
-    console.log(`API server now on port 3001`);
+    console.log(`API server now on port ${PORT}!`);
 });
