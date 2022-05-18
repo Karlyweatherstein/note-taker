@@ -2,7 +2,7 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
-const { notes } = require('/db/db.json')
+const { notes } = require('./db/notes')
 
 
 //creating paths
@@ -34,17 +34,31 @@ app.get('/', (req, res) => {
 
 
 // API Routes
+//Takes in new data, turns it into a string and pushes it into my db/notes file
+function addNote(body, noteArray) {
+    const newNote = body;
+    noteArray.push(newNote);
+    fs.writeFileSync(
+      path.join(__dirname, './db/notes.json'),
+      JSON.stringify({notes: noteArray}, null, 2)
+    );
+    return newNote;
+};
 
 // Get
 app.get('/api/notes', (req, res) => {
-    res.json(notes);
+    let data = notes;
+    // if (req.query) {
+    //     data = filterByQuery(req.query, data);
+    // }
+    res.json(data);
 });
 
 // Post
-app.post("/api/notes", (req, res) => {
-    notes.findAll() 
-    .then(notes => res.json(notes))
-    .catch(err => res.status(500).json(err));     
+app.post('/api/notes', (req, res) => {
+    req.body.id = notes.length.toString();
+    const allData = addNote(req.body, notes);
+    res.json(allData);
 });
 
 
