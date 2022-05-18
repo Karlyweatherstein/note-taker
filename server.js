@@ -1,5 +1,9 @@
+//express server
 const express = require('express');
 const fs = require('fs');
+const path = require('path');
+const { notes } = require('/db/db.json')
+
 
 //creating paths
 
@@ -8,24 +12,40 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 
 
-
+// Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('public'));
 
 
-//HTML Routes
+// HTML Routes
 app.get('/notes', (req, res) => {
-    res.sendFile(path.join(publicPath, 'notes'));
-})
+    res.sendFile(path.join(__dirname, 'public/notes.html'))
+});
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+});
 
 
-// //Routes
+
+// API Routes
+
+// Get
 app.get('/api/notes', (req, res) => {
-    if (req){
-        res.json(results)
-    }
-})
+    res.json(notes);
+});
+
+// Post
+app.post("/api/notes", (req, res) => {
+    notes.findAll() 
+    .then(notes => res.json(notes))
+    .catch(err => res.status(500).json(err));     
+});
 
 
 // Listening
