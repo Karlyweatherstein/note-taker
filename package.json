@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/Karlyweatherstein/note-taker#readme",
   "dependencies": {
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "inquirer": "^8.2.4",
+    "util": "^0.12.4"
   }
 }
