@@ -2,7 +2,7 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
-const { notes } = require('./db/notes');
+const { notes } = require('./db/notes.json');
 
 
 
@@ -46,19 +46,19 @@ function addNote(body, noteArray) {
     return newNote;
 };
 
-// Get
 
+
+
+app.get('/api/notes', (req, res) => {
+    let data = notes;
+    res.json(data);
+});
 
 // Post
 app.post('/api/notes', (req, res) => {
     req.body.id = notes.length.toString();
     const allData = addNote(req.body, notes);
     res.json(allData);
-});
-
-app.get('/api/notes', (req, res) => {
-    let data = notes;
-    res.json(data);
 });
 
 // Listening
