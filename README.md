@@ -25,6 +25,10 @@
 - WHEN I click on the Write icon in the navigation at the top of the page
   THEN I am presented with empty fields to enter a new note title and the note’s text in the right-hand column
 
+## Future developments
+
+- The routes to the api currently work and you can add data to the JSON file. However, it is not being read and posted to the page.
+
 ![Mockup](./images/note-taker-mockup.jpg)
 
 ## Installation
