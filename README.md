@@ -1,4 +1,4 @@
-# note-taker
+# Note Taker
 
 ## AS A small business owner
 
@@ -25,6 +25,14 @@
 - WHEN I click on the Write icon in the navigation at the top of the page
   THEN I am presented with empty fields to enter a new note title and the note’s text in the right-hand column
 
-![Mockup](assets/images/best-furrends-mockup.jpg)
+![Mockup](./images/note-taker-mockup.jpg)
 
-URL: https://karlyweatherstein.github.io/note-taker/
+## Installation
+
+- In order to run this application, some dependencies must be installed. Make sure to 'npm i' before getting started to ensure you have all of the dependencies installed.
+
+## Questions
+
+- If you have any questions feel free to reach out! My GitHub URL for this project is https://karlyweatherstein.github.io/note-taker/
+
+- The deployed Heroku application is https://shielded-sea-32832.herokuapp.com/
